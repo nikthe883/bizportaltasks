@@ -41,15 +41,20 @@ class QuoteScraper:
             self.quotes.extend(page_quotes)
             page += 1
 
-    def save_to_csv(self, filename='quotes.csv'):
+    def save_to_csv(self, filename):
         df = pd.DataFrame(self.quotes)
         df.to_csv(filename, index=False)
         print(f'Data saved to {filename}')
 
-    def save_to_json(self, filename='quotes.json'):
+    def save_to_json(self, filename):
         df = pd.DataFrame(self.quotes)
         df.to_json(filename, orient='records')
         print(f'Data saved to {filename}')
+
+# Filenames
+
+file_csv = "quotes.csv"
+file_json = "quotes.json"
 
 # Create an instance of the QuoteScraper class.
 scraper = QuoteScraper()
@@ -58,8 +63,8 @@ scraper = QuoteScraper()
 scraper.get_all_quotes()
 
 # Save the quotes to a CSV file.
-scraper.save_to_csv()
+scraper.save_to_csv(file_csv)
 
 # Save the quotes to a JSON file.
-scraper.save_to_json()
+scraper.save_to_json(file_json)
 
